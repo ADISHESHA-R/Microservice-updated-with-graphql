@@ -1,0 +1,41 @@
+type QuestionWrapper {
+    id: ID!
+    questionTitle: String
+    option1: String
+    option2: String
+    option3: String
+    option4: String
+}
+
+type QuizDto {
+    categoryName: String
+    numQuestions: Int
+    title: String
+}
+
+type Response {
+    id: ID!
+    response: String
+}
+
+type Query {
+    getQuizQuestions(id: ID!): [QuestionWrapper]
+}
+
+type Mutation {
+    createQuiz(quizDto: QuizDtoInput!): String
+    submitQuiz(id: ID!, responses: [ResponseInput!]!): Int
+    updateQuiz(id: ID!, quizDto: QuizDtoInput!): String
+    removeQuestionFromQuizzes(questionId: ID!): String
+}
+
+input QuizDtoInput {
+    categoryName: String
+    numQuestions: Int
+    title: String
+}
+
+input ResponseInput {
+    id: ID!
+    response: String
+}
