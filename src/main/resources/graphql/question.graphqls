@@ -1,0 +1,55 @@
+type Question {
+    id: ID!
+    questionTitle: String
+    option1: String
+    option2: String
+    option3: String
+    option4: String
+    rightAnswer: String
+    difficultyLevel: String
+    category: String
+}
+
+type QuestionWrapper {
+    id: ID!
+    questionTitle: String
+    option1: String
+    option2: String
+    option3: String
+    option4: String
+}
+
+type Response {
+    id: ID!
+    response: String
+}
+
+type Query {
+    allQuestions: [Question]
+    questionsByCategory(category: String!): [Question]
+    generateQuestions(categoryName: String!, numQuestions: Int!): [Int]
+    getQuestionsFromId(questionIds: [Int!]!): [QuestionWrapper]
+}
+
+type Mutation {
+    addQuestion(question: QuestionInput!): String
+    updateQuestion(id: ID!, question: QuestionInput!): String
+    deleteQuestion(id: ID!): String
+    getScore(responses: [ResponseInput!]!): Int
+}
+
+input QuestionInput {
+    questionTitle: String
+    option1: String
+    option2: String
+    option3: String
+    option4: String
+    rightAnswer: String
+    difficultyLevel: String
+    category: String
+}
+
+input ResponseInput {
+    id: ID!
+    response: String
+}
